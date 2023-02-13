@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {{ tecido.id }} - {{ tecido.tipo }} - {{ tecido.cor }} - {{tecido.metragem}}
+
+    <form action="{% url 'atualizar' tecido.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="tipo" value="{{tecido.tipo}}">
+        <input type="text" name="cor" value="{{tecido.cor}}">
+        <input type="text" name="metragem" value="{{tecido.metragem}}">
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>

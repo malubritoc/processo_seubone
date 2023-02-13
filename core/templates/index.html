@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Sistema de estoque de tecidos</h1>
+
+    <ul>
+        {% for tecido in tecidos %}
+        <li>{{ tecido.id }} - {{ tecido.tipo }} - {{tecido.cor}} - {{tecido.metragem}} 
+          <a href="{% url 'editar' tecido.id %}">Editar</a>
+          <a href="{% url 'excluir' tecido.id %}">Excluir</a>
+        </li>
+        {% endfor %}
+
+    </ul>
+
+    <form action="{% url 'salvar' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="tipo">
+        <input type="text" name="cor">
+        <input type="text" name="metragem">
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>
