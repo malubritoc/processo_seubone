@@ -1,6 +1,7 @@
 from django.db import models
 
 class Tecido(models.Model):
+    referencia = models.CharField(max_length=10)
     tipo = models.CharField(max_length=30)
     cor = models.CharField(max_length=30)
     #descobrir como faz p colocar numero

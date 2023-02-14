@@ -7,12 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-
-    Você está editando: INPUT: 0{{ tecido.id }} | TECIDO: {{ tecido.tipo }} | COR: {{ tecido.cor }} | METRAGEM: {{tecido.metragem}}
-
-    <form action="{% url 'atualizar' tecido.id %}" method="POST">
+    <form action="{% url 'salvar' %}" method="POST">
         {% csrf_token %}
+        <label for="tipo">Tipo:</label>
         <select id="tipo" name="tipo">
+            <!--- fazer o for igual o de cores depois -->
             <option value="Linho">Linho</option>
             <option value="Camurça">Camurça</option>
             <option value="Mescla">Mescla</option>
@@ -29,7 +28,8 @@
         <br>
         <br>
         <br>
-        <button type="submit">Atualizar</button>
+        <button type="submit">Salvar</button>
     </form>
+
 </body>
 </html>
