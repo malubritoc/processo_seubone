@@ -28,7 +28,7 @@
                 <a href="{% url 'excluir' tecido.id %}">Excluir</a>
             </td>
         </tr>
-        {% endfor %}    
+        {% endfor %}   
     </table>
 
     <form method="get" action="{% url 'tecidos_filtrados_referencia' %}">
@@ -46,6 +46,11 @@
         <button type="submit">Filtrar por Cor</button>
     </form>
 
+    <a href="{% url 'limpar_filtros' %}">
+        <button type="submit">Limpar filtros</button>
+    </a>
+
+    <br>
 
     <a href="{% url 'adicionar' %}">
         <button type="submit">Inserir novo tecido</button>
@@ -53,8 +58,8 @@
 
     <br>
 
-    <a href="{% url 'ver_estoque' %}">
-        <button type="submit">Ver estoque total</button>
+    <a href="{% url 'abrir_estoque' %}">
+        <button type="submit">Exibir estoque</button>
     </a>
 
 </body>

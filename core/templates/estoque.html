@@ -17,14 +17,22 @@
             <th>METRAGEM</th>
             <th>PRODUÇÃO</th>
         </tr> 
+        {% for tecido in tecidos %}
         <tr>
-            <td>referencia</td>
-            <td>tipo</td>
-            <td>cor</td>
-            <td>metros</td>
-            <td>x bones</td>
-
-        </tr> 
+            <td>{{ tecido.referencia }}</td>
+            <td>{{ tecido.tipo }}</td>
+            <td>{{ tecido.cor }}</td>
+            <td>{{ tecido.metragem_total }}</td>
+            <td>{{ tecido.producao }}</td>
+        </tr>
+        {% endfor %}   
+        <tr>
+            <td>Produção total disponível:</td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td>{{prod_total}}</td>
+        </tr>  
     </table>
 
     <form method="get" action="{% url 'tecidos_filtrados_referencia_estoque' %}">
@@ -41,6 +49,12 @@
         {{ form.as_p }}
         <button type="submit">Filtrar por Cor</button>
     </form>
+
+    <a href="{% url 'limpar_filtros_estoque' %}">
+        <button type="submit">Limpar filtros</button>
+    </a>
+
+    <br>
 
     <a href="{% url 'voltar_inputs' %}">
         <button type="submit">Ver histórico de inputs</button>

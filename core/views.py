@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Tecido
 from .forms import FiltroTecidosReferenciaForm, FiltroTecidosTipoForm, FiltroTecidosCorForm
+from django.db.models import Sum
+from math import floor
 
 def home(request):
     tecidos = Tecido.objects.all()
@@ -44,10 +46,12 @@ def atualizar(request, id):
     vtipo = request.POST.get('tipo')
     vcor = request.POST.get('cor')
     vmetragem = request.POST.get('metragem')
+    vreferencia = definir_referencia(vtipo,vcor)
     tecido = Tecido.objects.get(id=id)
     tecido.tipo = vtipo
     tecido.cor = vcor
     tecido.metragem = vmetragem
+    tecido.referencia = vreferencia
     tecido.save()
     return redirect(home)
 
@@ -62,7 +66,6 @@ def tecidos_filtrados_referencia(request):
     if form.is_valid():
         if form.cleaned_data['referencia']:
             tecidos = tecidos.filter(referencia__icontains=form.cleaned_data['referencia'])
-            print(tecidos)
         return render(request, 'index.html', {'form': form, 'tecidos': tecidos})     
         
 def tecidos_filtrados_tipo(request): 
@@ -70,11 +73,8 @@ def tecidos_filtrados_tipo(request):
     form = FiltroTecidosTipoForm(request.GET)
     tecidos = Tecido.objects.all()
     if form.is_valid():      
-        print('Formulario valido')
         if form.cleaned_data['tipo']:
-            print('ok')
-            tecidos = tecidos.filter(referencia__icontains=form.cleaned_data['tipo'])
-            print(tecidos)
+            tecidos = tecidos.filter(tipo__icontains=form.cleaned_data['tipo'])
         return render(request, 'index.html', {'form': form, 'tecidos': tecidos})
         
 def tecidos_filtrados_cor(request):
@@ -82,35 +82,67 @@ def tecidos_filtrados_cor(request):
     tecidos = Tecido.objects.all()
     if form.is_valid():
         if form.cleaned_data['cor']:
-            tecidos = tecidos.filter(referencia__icontains=form.cleaned_data['cor'])
+            tecidos = tecidos.filter(cor__icontains=form.cleaned_data['cor'])
     return render(request, 'index.html', {'form': form, 'tecidos': tecidos})   
-        
-def ver_estoque(request):
-    return render (request, 'estoque.html')
+
+def limpar_filtros(request):
+    return redirect(home)
+
+def producao(tecidos_list):
+    prod_total = 0
+    for tecido in tecidos_list:
+        tecido['producao'] = floor(float(tecido['metragem_total']) * 7)
+        prod_total += tecido['producao']
+    return tecidos_list, prod_total
+
+def ver_estoque():
+    tecidos = Tecido.objects.values('referencia', 'tipo', 'cor').annotate(metragem_total=Sum('metragem'))
+    tecidos_list = list(tecidos)
+    tecidos_list, prod_total = producao(tecidos_list)
+    return tecidos_list, prod_total
+
+def abrir_estoque(request):
+    tecidos_list, prod_total = ver_estoque()
+    return render (request, 'estoque.html', {'tecidos': tecidos_list, 'prod_total': prod_total})
+
+def limpar_filtros_estoque(request):
+    tecidos_list, prod_total = ver_estoque()
+    return render (request, 'estoque.html', {'tecidos': tecidos_list, 'prod_total': prod_total})
 
 def tecidos_filtrados_referencia_estoque(request):
     form = FiltroTecidosReferenciaForm(request.GET)
-    tecidos = Tecido.objects.all()
+    tecidos_list, prod_total = ver_estoque()
     if form.is_valid():
         if form.cleaned_data['referencia']:
+            tecidos = Tecido.objects.values('referencia', 'tipo', 'cor').annotate(metragem_total=Sum('metragem'))
             tecidos = tecidos.filter(referencia__icontains=form.cleaned_data['referencia'])
-        return render(request, 'estoque.html', {'form': form, 'tecidos': tecidos})     
+            tecidos_list = list(tecidos)
+            tecidos_list, prod_total = producao(tecidos_list)
+    return render(request, 'estoque.html', {'form': form, 'tecidos': tecidos_list, 'prod_total': prod_total})  
         
 def tecidos_filtrados_tipo_estoque(request):  
     form = FiltroTecidosTipoForm(request.GET)
-    tecidos = Tecido.objects.all()
-    if form.is_valid():      
+    tecidos_list, prod_total = ver_estoque()
+    if form.is_valid():
         if form.cleaned_data['tipo']:
-            tecidos = tecidos.filter(referencia__icontains=form.cleaned_data['tipo'])
-        return render(request, 'estoque.html', {'form': form, 'tecidos': tecidos})
+            tecidos = Tecido.objects.values('referencia', 'tipo', 'cor').annotate(metragem_total=Sum('metragem'))
+            tecidos = tecidos.filter(tipo__icontains=form.cleaned_data['tipo'])
+            tecidos_list = list(tecidos)
+            tecidos_list, prod_total = producao(tecidos_list)
+    return render(request, 'estoque.html', {'form': form, 'tecidos': tecidos_list, 'prod_total': prod_total}) 
         
 def tecidos_filtrados_cor_estoque(request):
     form = FiltroTecidosCorForm(request.GET)
-    tecidos = Tecido.objects.all()
+    tecidos_list, prod_total = ver_estoque()
     if form.is_valid():
         if form.cleaned_data['cor']:
-            tecidos = tecidos.filter(referencia__icontains=form.cleaned_data['cor'])
-    return render(request, 'estoque.html', {'form': form, 'tecidos': tecidos}) 
+            tecidos = Tecido.objects.values('referencia', 'tipo', 'cor').annotate(metragem_total=Sum('metragem'))
+            tecidos = tecidos.filter(cor__icontains=form.cleaned_data['cor'])
+            tecidos_list = list(tecidos)
+            tecidos_list, prod_total = producao(tecidos_list)
+    return render(request, 'estoque.html', {'form': form, 'tecidos': tecidos_list, 'prod_total': prod_total}) 
+
 
 def voltar_inputs(request):
-    return render (request, 'index.html')
+    return redirect(home)
+
