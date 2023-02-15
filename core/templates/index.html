@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +8,54 @@
 </head>
 <body>
     <h1>Histórico de inputs</h1>
-
-    <ul>
+    <table>
+        <tr>
+            <th>INPUT</th>
+            <th>REFERÊNCIA</th>
+            <th>TECIDO</th>
+            <th>COR</th>
+            <th>METRAGEM</th>
+        </tr> 
         {% for tecido in tecidos %}
-        <li>INPUT: 0{{ tecido.id }} | REFERENCIA {{ tecido.referencia }} | TECIDO: {{ tecido.tipo }} | COR: {{tecido.cor}} | METRAGEM: {{tecido.metragem}} 
-          <a href="{% url 'editar' tecido.id %}">Editar</a>
-          <a href="{% url 'excluir' tecido.id %}">Excluir</a>
-        </li>
-        {% endfor %}
+        <tr>
+            <td>00{{ tecido.id }} </td>
+            <td>{{ tecido.referencia }}</td>
+            <td>{{ tecido.tipo }}</td>
+            <td>{{ tecido.cor }}</td>
+            <td>{{ tecido.metragem }}</td>
+            <td>          
+                <a href="{% url 'editar' tecido.id %}">Editar</a>
+                <a href="{% url 'excluir' tecido.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}    
+    </table>
 
-    </ul>
+    <form method="get" action="{% url 'tecidos_filtrados_referencia' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrar por Referência</button>
+    </form>
 
-    <a href="{% url 'adicionar' %}">Inserir novo tecido</a>
+    <form method="get" action="{% url 'tecidos_filtrados_tipo' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrar por Tecido</button>
+    </form>
+
+    <form method="get" action="{% url 'tecidos_filtrados_cor' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrar por Cor</button>
+    </form>
+
+
+    <a href="{% url 'adicionar' %}">
+        <button type="submit">Inserir novo tecido</button>
+    </a>
+
+    <br>
+
+    <a href="{% url 'ver_estoque' %}">
+        <button type="submit">Ver estoque total</button>
+    </a>
+
 </body>
 </html>

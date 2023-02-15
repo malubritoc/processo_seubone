@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Estoque</h1>
+
+    <table>
+        <tr>
+            <th>REFERÊNCIA</th>
+            <th>TECIDO</th>
+            <th>COR</th>
+            <th>METRAGEM</th>
+            <th>PRODUÇÃO</th>
+        </tr> 
+        <tr>
+            <td>referencia</td>
+            <td>tipo</td>
+            <td>cor</td>
+            <td>metros</td>
+            <td>x bones</td>
+
+        </tr> 
+    </table>
+
+    <form method="get" action="{% url 'tecidos_filtrados_referencia_estoque' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrar por Referência</button>
+    </form>
+
+    <form method="get" action="{% url 'tecidos_filtrados_tipo_estoque' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrar por Tecido</button>
+    </form>
+
+    <form method="get" action="{% url 'tecidos_filtrados_cor_estoque' %}">
+        {{ form.as_p }}
+        <button type="submit">Filtrar por Cor</button>
+    </form>
+
+    <a href="{% url 'voltar_inputs' %}">
+        <button type="submit">Ver histórico de inputs</button>
+    </a>
+
+</body>
+</html>

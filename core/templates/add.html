@@ -11,11 +11,9 @@
         {% csrf_token %}
         <label for="tipo">Tipo:</label>
         <select id="tipo" name="tipo">
-            <!--- fazer o for igual o de cores depois -->
-            <option value="Linho">Linho</option>
-            <option value="Camurça">Camurça</option>
-            <option value="Mescla">Mescla</option>
-            <option value="Moletom">Moletom</option>
+            {% for tipo in tipos_tecidos %}
+            <option value="{{tipo}}">{{tipo}}</option>
+            {% endfor %}
         </select>
         <label for="cor">Cor:</label>
         <select id="cor" name="cor">
