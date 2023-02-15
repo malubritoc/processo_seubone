@@ -5,8 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
 </head>
 <body>
+
+    <div id="cabecalho">
+        <img src="https://cdn.shopify.com/s/files/1/0639/6218/5944/files/logo_SB_BRANCA_E_AMARELA_140x@2x.png?v=1650296644">
+    </div>
 
     Você está editando: INPUT: 0{{ tecido.id }} | TECIDO: {{ tecido.tipo }} | COR: {{ tecido.cor }} | METRAGEM: {{tecido.metragem}}
 

@@ -5,8 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
 </head>
 <body>
+    <div id="cabecalho">
+        <img src="https://cdn.shopify.com/s/files/1/0639/6218/5944/files/logo_SB_BRANCA_E_AMARELA_140x@2x.png?v=1650296644">
+    </div>
+
     <h1>Estoque</h1>
 
     <table>
@@ -22,8 +28,8 @@
             <td>{{ tecido.referencia }}</td>
             <td>{{ tecido.tipo }}</td>
             <td>{{ tecido.cor }}</td>
-            <td>{{ tecido.metragem_total }}</td>
-            <td>{{ tecido.producao }}</td>
+            <td>{{ tecido.metragem_total }}m</td>
+            <td>{{ tecido.producao }} unidades</td>
         </tr>
         {% endfor %}   
         <tr>
@@ -31,7 +37,7 @@
             <td> </td>
             <td> </td>
             <td> </td>
-            <td>{{prod_total}}</td>
+            <td>{{prod_total}} unidades</td>
         </tr>  
     </table>
 

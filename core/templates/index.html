@@ -5,9 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
 </head>
 <body>
-    <h1>Histórico de inputs</h1>
+    <div id="cabecalho">
+        <img src="https://cdn.shopify.com/s/files/1/0639/6218/5944/files/logo_SB_BRANCA_E_AMARELA_140x@2x.png?v=1650296644">
+    </div>
+    <h1><class titulo>Historico de inputs</class></h1>
     <table>
         <tr>
             <th>INPUT</th>
@@ -22,11 +27,9 @@
             <td>{{ tecido.referencia }}</td>
             <td>{{ tecido.tipo }}</td>
             <td>{{ tecido.cor }}</td>
-            <td>{{ tecido.metragem }}</td>
-            <td>          
-                <a href="{% url 'editar' tecido.id %}">Editar</a>
-                <a href="{% url 'excluir' tecido.id %}">Excluir</a>
-            </td>
+            <td>{{ tecido.metragem }}m</td>
+            <td><a href="{% url 'editar' tecido.id %}"><img src="https://cdn-icons-png.flaticon.com/512/6269/6269505.png" id="icone" alt="Editar"></a></td>
+            <td><a href="{% url 'excluir' tecido.id %}"><img src="https://cdn-icons-png.flaticon.com/512/7778/7778893.png" id="icone" alt="Excluir"></a></td>
         </tr>
         {% endfor %}   
     </table>
