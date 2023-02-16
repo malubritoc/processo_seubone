@@ -29,6 +29,7 @@ python manage.py runserver
 ### Observações sobre a função ˜Filtrar˜: 
 <h4>A função ˜Filtrar" ainda está pendente de modificações para sua plena execução, vez que ainda apresenta alguns bugs de visualização. Considerando isso, vale esclarecer as orientações de uso da função nos moldes atuais:
 
+
 a) Primeiramente, o usuário deve escolher o parâmetro pelo qual deseja filtrar os itens: "Referência", "Tecido" ou "Cor", clicando no respectivo botão (lembrando que, até o momento atual, só é possível realizar essa ação com um único parâmetro);
 
 a.1 Neste momento, será possível visualizar o bug citado anteriormente, pois devem aparecer três campos vazios, ao invés de somente um.
@@ -39,6 +40,6 @@ a.2 Outro bug de visualização é que, após inputar o conteúdo do parâmetro,
 
 c) Diante disso, o usuário deve então clicar novamente no botão referente ao parâmetro selecionado no item a).
 
-Dessa forma, será realizada a execução da filtragem conforme o parâmetro desejado, estando prejudicada somente o aspecto visual da funcionalidade
+Dessa forma, será realizada a execução da filtragem conforme o parâmetro desejado, estando prejudicado somente o aspecto visual da funcionalidade
 
         
