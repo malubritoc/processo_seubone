@@ -8,7 +8,9 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 * [Git](https://git-scm.com)
 * [Python 3](https://www.python.org/)
 * [Django](https://www.djangoproject.com/). 
+* [SQLite](https://www.sqlite.org/index.html)
 * Além disto é bom ter um editor para trabalhar com o código, como [VSCode](https://code.visualstudio.com/)
+
 
 ### Iniciando o servidor
 #### Clone este repositório
@@ -25,6 +27,10 @@ cd processo_seubone
 python manage.py runserver
 
 ##### O servidor inciará na porta 8000 - acesse <http://localhost:8000>
+
+### Banco de dados
+
+O repositório contém um banco de dados teste em SQLite, com alguns dados já adicionados para fins de amostra.
 
 ### Observações sobre a função ˜Filtrar˜: 
 <h4>A função ˜Filtrar" ainda está pendente de modificações para sua plena execução, vez que ainda apresenta alguns bugs de visualização. Considerando isso, vale esclarecer as orientações de uso da função nos moldes atuais:
