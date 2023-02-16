@@ -7,14 +7,21 @@
     <title>Document</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="cabecalho">
         <img src="https://cdn.shopify.com/s/files/1/0639/6218/5944/files/logo_SB_BRANCA_E_AMARELA_140x@2x.png?v=1650296644">
     </div>
-
-    <h1>Estoque</h1>
-
+    <br>
+    <h1 style="margin-bottom: 17.5px;">
+        EXIBIR ESTOQUE
+        <a href="{% url 'voltar_inputs' %}" class="aba" style="text-decoration: none; color: black; font-size: 12px">HISTÓRICO DE INPUTS</a>
+    </h1>
+    <hr style="margin-left:267.5px; margin-top: 0px; background: rgb(163, 161, 161); height: 1px;">
+    <br>
     <table>
         <tr>
             <th>REFERÊNCIA</th>
@@ -41,29 +48,31 @@
         </tr>  
     </table>
 
-    <form method="get" action="{% url 'tecidos_filtrados_referencia_estoque' %}">
-        {{ form.as_p }}
-        <button type="submit">Filtrar por Referência</button>
-    </form>
+    <div id="form_container">
+        <p>Filtrar por: </p>
 
-    <form method="get" action="{% url 'tecidos_filtrados_tipo_estoque' %}">
-        {{ form.as_p }}
-        <button type="submit">Filtrar por Tecido</button>
-    </form>
+        <form method="get" action="{% url 'tecidos_filtrados_referencia_estoque' %}" style="float:left;">
+            {{ form.as_p }}
+            <button type="submit">Referência</button>
+        </form>
 
-    <form method="get" action="{% url 'tecidos_filtrados_cor_estoque' %}">
-        {{ form.as_p }}
-        <button type="submit">Filtrar por Cor</button>
-    </form>
+        <form method="get" action="{% url 'tecidos_filtrados_tipo_estoque' %}" style="float:left;">
+            {{ form.as_p }}
+            <button type="submit">Tecido</button>
+        </form>
 
-    <a href="{% url 'limpar_filtros_estoque' %}">
-        <button type="submit">Limpar filtros</button>
-    </a>
-
+        <form method="get" action="{% url 'tecidos_filtrados_cor_estoque' %}" style="float:left;">
+            {{ form.as_p }}
+            <button type="submit">Cor</button>
+        </form>
+    </div>
     <br>
-
-    <a href="{% url 'voltar_inputs' %}">
-        <button type="submit">Ver histórico de inputs</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'limpar_filtros_estoque' %}" style="margin-left: 80px">
+        Limpar filtros
     </a>
 
 </body>

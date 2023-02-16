@@ -7,14 +7,22 @@
     <title>Document</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="cabecalho">
         <img src="https://cdn.shopify.com/s/files/1/0639/6218/5944/files/logo_SB_BRANCA_E_AMARELA_140x@2x.png?v=1650296644">
     </div>
-    <form action="{% url 'salvar' %}" method="POST">
+    <br>
+    <h1>Inserir novo tecido</h1>
+    <hr style="margin-left:80px;">
+    <br>
+    <form action="{% url 'salvar' %}" method="POST" style="margin-left: 80px;">
         {% csrf_token %}
-        <label for="tipo">Tipo:</label>
+        <label for="tipo">Tecido:</label>
         <select id="tipo" name="tipo">
             {% for tipo in tipos_tecidos %}
             <option value="{{tipo}}">{{tipo}}</option>
@@ -31,7 +39,7 @@
         <br>
         <br>
         <br>
-        <button type="submit">Salvar</button>
+        <button type="submit" style="margin-left: 0;">Salvar</button>
     </form>
 
 </body>

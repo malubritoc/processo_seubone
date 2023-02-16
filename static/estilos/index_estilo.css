@@ -1,10 +1,15 @@
+*{
+    font-family: 'Montserrat';
+}
+
 h1{
-    font-family: Lucida Sans;
-    font-size: 35px;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    margin-left: 80px;
 }
 
 #cabecalho{
-    width: auto;
+    width: 100%;
     height: 100px;
     background-color: rgb(2, 2, 71);
     border-color: rgb(147, 150, 153);
@@ -18,14 +23,15 @@ img{
 #icone{
     width: 15px;
     height: 15px;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
 }
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
     margin-bottom: 20px;
+    margin-left: 80px;
   }
   
   th, td {
@@ -41,3 +47,52 @@ table {
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  tr:nth-child(odd) {
+    background-color: #d8d7d7;
+  }
+
+  button {
+    background-color: #f2f2f2;
+    border: none;
+    color: black;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    align-items: center;
+  }
+  
+  button:hover {
+    background-color: #000000;
+    transition: background-color 0.3s ease-in-out;
+    color: white;
+
+  }
+
+  .aba{
+    background-color: rgb(163, 161, 161);
+    padding: 20px;
+    padding-top: 15px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px ;
+    margin-left: 10px;
+  }
+
+  #form_container{
+    margin-left: 80px;
+  }
+
+  #botao_adicionar{
+    margin-left: 80px!important ;
+    vertical-align: baseline;
+    text-decoration: none!important;
+  }
+
+#forms_atualizar{
+    margin-left: 80px;
+}
+

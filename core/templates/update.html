@@ -7,35 +7,65 @@
     <title>Document</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos/index_estilo.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="cabecalho">
         <img src="https://cdn.shopify.com/s/files/1/0639/6218/5944/files/logo_SB_BRANCA_E_AMARELA_140x@2x.png?v=1650296644">
     </div>
+    <br>
+    <h1>Editar tecido</h1>
+    <hr style="margin-left: 80px;">
+    <br>
 
-    Você está editando: INPUT: 0{{ tecido.id }} | TECIDO: {{ tecido.tipo }} | COR: {{ tecido.cor }} | METRAGEM: {{tecido.metragem}}
+    <h1>ATENÇÃO! Você está editando:</h1> 
+    
+    <table>
+        <tr>
+            <th>INPUT</th>
+            <th>REFERÊNCIA</th>
+            <th>TECIDO</th>
+            <th>COR</th>
+            <th>METRAGEM</th>
+        </tr> 
+        <tr>
+            <td>{{ tecido.id }}</td>
+            <td>{{ tecido.referencia }}</td>
+            <td>{{ tecido.tipo }}</td>
+            <td>{{ tecido.cor }}</td>
+            <td>{{ tecido.metragem }}m</td>
+        </tr>
+    </table>
+    
+    <div id="forms_atualizar">
+        <p>Preencha novamente os campos:</p>
 
-    <form action="{% url 'atualizar' tecido.id %}" method="POST">
-        {% csrf_token %}
-        <select id="tipo" name="tipo">
-            <option value="Linho">Linho</option>
-            <option value="Camurça">Camurça</option>
-            <option value="Mescla">Mescla</option>
-            <option value="Moletom">Moletom</option>
-        </select>
-        <label for="cor">Cor:</label>
-        <select id="cor" name="cor">
-            {% for cor in cores %}
-            <option value="{{cor}}">{{cor}}</option>
-            {% endfor %}
-        </select>
-        <label for="Metragem">Metragem:</label>
-        <input type="number" step="0.1" name="metragem">
-        <br>
-        <br>
-        <br>
-        <button type="submit">Atualizar</button>
-    </form>
+        <form action="{% url 'atualizar' tecido.id %}" method="POST">
+            {% csrf_token %}
+            <label for="tipo">Tecido:</label>
+            <select id="tipo" name="tipo">
+                <option value="Linho">Linho</option>
+                <option value="Camurça">Camurça</option>
+                <option value="Mescla">Mescla</option>
+                <option value="Moletom">Moletom</option>
+            </select>
+            <label for="cor">Cor:</label>
+            <select id="cor" name="cor">
+                {% for cor in cores %}
+                <option value="{{cor}}">{{cor}}</option>
+                {% endfor %}
+            </select>
+            <label for="Metragem">Metragem:</label>
+            <input type="number" step="0.1" name="metragem">
+            <br>
+            <br>
+            <br>
+            <button type="submit">Atualizar</button>
+        </form>
+    </div>
 </body>
 </html>
